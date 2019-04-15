@@ -29,7 +29,7 @@ public class Main {
                     String licenseURL = ((JsonString)userRepoTree.getValue("/license/url")).getString();
                     gitHubRestApiReader.close();
                     System.out.println(owner + "," +  repoName + "," + language+ "," + forksNum+ "," +  starsNum+ "," + licenseName+ "," + licenseURL);
-//                navigateTree(userRepoTree,null);
+
                 } catch (Exception e) {
                     printHelp();
                 }
