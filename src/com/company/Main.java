@@ -1,15 +1,18 @@
 package com.company;
 
-
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonReader;
+import javax.json.JsonStructure;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args) {
+        List<OutputRecord> output = new LinkedList<>();
         for (String requestedGitHubRepo:args) {
             String[] repoOwnerAndName = extractRepoOwnerAndName(requestedGitHubRepo.split("/"));
             if(repoOwnerAndName != null) {
@@ -22,28 +25,18 @@ public class Main {
                     HttpsURLConnection gitHubRestApi = (HttpsURLConnection) url.openConnection();
                     JsonReader gitHubRestApiReader = Json.createReader(gitHubRestApi.getInputStream());
                     JsonStructure userRepoTree = gitHubRestApiReader.read();
-                    String language = ((JsonString)userRepoTree.getValue("/language")).getString();
-                    String forksNum = (userRepoTree.getValue("/forks")).toString();
-                    String starsNum = (userRepoTree.getValue("/stargazers_count")).toString();
-                    String licenseName = ((JsonString)userRepoTree.getValue("/license/name")).getString();
-                    String licenseURL = ((JsonString)userRepoTree.getValue("/license/url")).getString();
+                    com.company.OutputRecord record = new com.company.OutputRecord(owner, repoName, userRepoTree);
+                    output.add(record);
                     gitHubRestApiReader.close();
-                    System.out.println(owner + "," +  repoName + "," + language+ "," + forksNum+ "," +  starsNum+ "," + licenseName+ "," + licenseURL);
 
                 } catch (Exception e) {
                     printHelp();
-                    e.getMessage();
                 }
             } else {
                 printHelp();
             }
         }
-
-
-
-
-
-    }
+   }
 
 private static String[] extractRepoOwnerAndName(String[] repoLink) {
         String[] repoOwnerAndName = new String[2];
