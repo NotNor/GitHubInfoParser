@@ -1,6 +1,6 @@
 package com.company;
 
-class ExtractOwnerAndNameOfRepo {
+class ExtractRepositoryID {
     static RepositoryID get(String arg) throws IllegalArgumentException{
         String[] consoleArg = arg.split("/");
         RepositoryID repositoryID;

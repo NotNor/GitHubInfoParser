@@ -23,7 +23,7 @@ public static void main(String[] args) {
 
     try {
         InputParser inputParser = new InputParser(args);
-        repositoryIDsOfRequestedRepos = inputParser.getOwnerRepoPairs();
+        repositoryIDsOfRequestedRepos = inputParser.getRepositoryIDs();
     } catch (Exception e) {
         System.out.println("Invalid input.\n");
         printHelp();

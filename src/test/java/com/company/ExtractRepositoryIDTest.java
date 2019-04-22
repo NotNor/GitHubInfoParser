@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ExtractOwnerAndNameOfRepoTest {
+class ExtractRepositoryIDTest {
 
 
     @ParameterizedTest
@@ -18,7 +18,7 @@ class ExtractOwnerAndNameOfRepoTest {
        RepositoryID repositoryID = new RepositoryID("Microsoft", "BosqueLanguage");
        RepositoryID testInput = new RepositoryID("", "");
        try {
-            testInput = ExtractOwnerAndNameOfRepo.get(input);
+            testInput = ExtractRepositoryID.get(input);
         } catch (Exception e) {
 
         }
@@ -34,7 +34,7 @@ class ExtractOwnerAndNameOfRepoTest {
     void get_throws_exception(String input) {
         RepositoryID repositoryID = new RepositoryID("Microsoft", "BosqueLanguage");
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            RepositoryID testInput = ExtractOwnerAndNameOfRepo.get(input);});
+            RepositoryID testInput = ExtractRepositoryID.get(input);});
 
     }
 }
