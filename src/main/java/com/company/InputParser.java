@@ -7,10 +7,14 @@ public class InputParser {
     private List<RepositoryID> repositoryIDs = new LinkedList<>();
 
     public InputParser(String[] consoleArgs) throws Exception {
-
         for (String consoleArg : consoleArgs) {
-            RepositoryID repositoryID = ExtractRepositoryID.get(consoleArg);
-            repositoryIDs.add(repositoryID);
+            try {
+                RepositoryID repositoryID = ExtractRepositoryID.get(consoleArg);
+                repositoryIDs.add(repositoryID);
+
+            } catch (Exception e) {
+                throw new Exception("Invalid argument: " + consoleArg + "\n");
+            }
         }
     }
 

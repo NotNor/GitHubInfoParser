@@ -22,8 +22,13 @@ public class OutputRecord {
 
     @Override
     public String toString() {
-        return this.owner + this.repoName + this.language + this.forksNum + this.starsNum +
-                this.licenseName + this.licenseURL;
+        return this.owner + "," +
+                this.repoName + "," +
+                this.language + "," +
+                this.forksNum + "," +
+                this.starsNum + "," +
+                this.licenseName + "," +
+                this.licenseURL;
     }
 
 }

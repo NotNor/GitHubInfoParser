@@ -25,7 +25,7 @@ public static void main(String[] args) {
         InputParser inputParser = new InputParser(args);
         repositoryIDsOfRequestedRepos = inputParser.getRepositoryIDs();
     } catch (Exception e) {
-        System.out.println("Invalid input.\n");
+        System.out.println(e.getMessage());
         printHelp();
         return;
     }
