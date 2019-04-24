@@ -15,7 +15,7 @@ public static void main(String[] args) {
     List<OutputRecord> output = new LinkedList<>();
     Map<RepositoryID,JsonStructure> reposData = new HashMap<>();
 
-    if (args == null) {
+    if (args.length == 0) {
         System.out.println("No input argument(s) passed.\n");
         printHelp();
         return;

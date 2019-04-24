@@ -2,42 +2,30 @@ package com.company;
 
 import javax.json.JsonString;
 import javax.json.JsonStructure;
+import javax.json.JsonValue;
 
 public class JsonParser {
 
     public static OutputRecord parseData(String owner, String repoName, JsonStructure repoData) {
 
-        String language = null;
-        try {
-            language = ((JsonString) repoData.getValue("/language")).getString();
-        } catch (Exception e) {
-        }
-
-        String forksNum = null;
-        try {
-            forksNum = (repoData.getValue("/forks")).toString();
-        } catch (Exception e) {
-        }
-
-        String starsNum = null;
-        try {
-            starsNum = (repoData.getValue("/stargazers_count")).toString();
-        } catch (Exception e) {
-        }
-
-        String licenseName = null;
-        try {
-            licenseName = ((JsonString) repoData.getValue("/license/name")).getString();
-        } catch (Exception e) {
-        }
-
-        String licenseURL = null;
-        try {
-            licenseURL = ((JsonString) repoData.getValue("/license/url")).getString();
-        } catch (Exception e) {
-        }
-
+        String language = getValue("/language", repoData);
+        String forksNum = getValue("/forks", repoData);
+        String starsNum = getValue("/stargazers_count", repoData);
+        String licenseName = getValue("/license/name", repoData);
+        String licenseURL = getValue("/license/url", repoData);
 
         return new OutputRecord(owner, repoName, language, forksNum, starsNum, licenseName, licenseURL);
+    }
+
+    private static String getValue(String pointer, JsonStructure repoData) {
+        try {
+            if (repoData.getValue(pointer).getValueType() == JsonValue.ValueType.STRING) {
+                return ((JsonString) repoData.getValue(pointer)).getString();
+            } else {
+                return repoData.getValue(pointer).toString();
+            }
+        } catch (Exception e) {
+           return null;
+        }
     }
 }
