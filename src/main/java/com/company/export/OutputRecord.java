@@ -1,13 +1,13 @@
-package com.company;
+package com.company.export;
 
 public class OutputRecord {
-    private String owner;
-    private String repoName;
-    private String language;
-    private String forksNum;
-    private String starsNum;
-    private String licenseName;
-    private String licenseURL;
+    private final String owner;
+    private final String repoName;
+    private final String language;
+    private final String forksNum;
+    private final String starsNum;
+    private final String licenseName;
+    private final String licenseURL;
 
     public OutputRecord(String owner, String repoName, String language,
                         String forksNum, String starsNum, String licenseName, String licenseURL) {
@@ -31,4 +31,10 @@ public class OutputRecord {
                 this.licenseURL;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+       if (this == obj) return true;
+       else return this.toString().equals(obj.toString());
+    }
 }

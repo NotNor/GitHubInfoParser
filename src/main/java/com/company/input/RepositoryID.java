@@ -1,8 +1,8 @@
-package com.company;
+package com.company.input;
 
 public class RepositoryID {
-        private String owner;
-        private String repoName;
+        private final String owner;
+        private final String repoName;
 
     public RepositoryID(String owner, String repoName) {
         this.owner = owner;

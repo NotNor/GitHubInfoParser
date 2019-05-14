@@ -1,7 +1,7 @@
-package com.company;
+package com.company.input;
 
-class ExtractRepositoryID {
-    static RepositoryID get(String arg) throws IllegalArgumentException{
+public class ExtractRepositoryID {
+    public static RepositoryID get(String arg) throws IllegalArgumentException{
         String[] consoleArg = arg.split("/");
         RepositoryID repositoryID;
         if (consoleArg.length == 2) {

@@ -1,10 +1,10 @@
-package com.company;
+package com.company.input;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class InputParser {
-    private List<RepositoryID> repositoryIDs = new LinkedList<>();
+    private final List<RepositoryID> repositoryIDs = new LinkedList<>();
 
     public InputParser(String[] consoleArgs) throws Exception {
         for (String consoleArg : consoleArgs) {

@@ -1,12 +1,14 @@
 package com.company;
 
+import com.company.export.OutputRecord;
+
 import javax.json.JsonString;
 import javax.json.JsonStructure;
 import javax.json.JsonValue;
 
-public class JsonParser {
+class JsonParser {
 
-    public static OutputRecord parseData(String owner, String repoName, JsonStructure repoData) {
+    static OutputRecord parseData(String owner, String repoName, JsonStructure repoData) {
 
         String language = getValue("/language", repoData);
         String forksNum = getValue("/forks", repoData);
