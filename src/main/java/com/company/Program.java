@@ -13,13 +13,14 @@ import java.util.List;
 import java.util.Map;
 
 class Program {
-    private List<RepositoryID> repositoryIDsOfRequestedRepos;
     private final List<OutputRecord> output = new LinkedList<>();
     private final Map<RepositoryID, JsonStructure> reposData = new HashMap<>();
 
     void run(String[] args) throws Exception {
-    InputParser inputParser = new InputParser(args);
-    repositoryIDsOfRequestedRepos = inputParser.getRepositoryIDs();
+    InputParser inputParser = new InputParser();
+    inputParser.parse(args);
+
+        List<RepositoryID> repositoryIDsOfRequestedRepos = inputParser.getRepositoryIDs();
 
 
         GetDataFromGithub.download(repositoryIDsOfRequestedRepos,reposData);

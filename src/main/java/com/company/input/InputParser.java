@@ -6,7 +6,7 @@ import java.util.List;
 public class InputParser {
     private final List<RepositoryID> repositoryIDs = new LinkedList<>();
 
-    public InputParser(String[] consoleArgs) throws Exception {
+    public void parse(String[] consoleArgs) throws Exception {
         for (String consoleArg : consoleArgs) {
             try {
                 RepositoryID repositoryID = ExtractRepositoryID.get(consoleArg);
