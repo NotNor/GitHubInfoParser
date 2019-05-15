@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 class GetDataFromGithub {
-    static void download(List<RepositoryID> repositoryIDsOfRequestedRepos,
-                         Map<RepositoryID, JsonStructure> reposData  ) {
+    static void getData(List<RepositoryID> repositoryIDsOfRequestedRepos,
+                        Map<RepositoryID, JsonStructure> reposData  ) {
 
         CountDownLatch countDownLatch = new CountDownLatch(repositoryIDsOfRequestedRepos.size());
 
@@ -29,7 +29,7 @@ class GetDataFromGithub {
                                          CountDownLatch countDownLatch) {
 
         try {
-            JsonStructure requestedData = GithubDataRequester.get(repositoryID);
+            JsonStructure requestedData = GithubApiClient.downloadJsonOf(repositoryID);
             reposData.put(repositoryID, requestedData);
         } catch (FileNotFoundException e) {
             System.out.println("There is no such repo: " + repositoryID.getOwner() + "/" + repositoryID.getRepoName());

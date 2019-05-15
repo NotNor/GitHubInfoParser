@@ -1,9 +1,11 @@
 package com.company.input;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
     private String[] validArgs = {"https://github.com/Microsoft/BosqueLanguage",
@@ -19,8 +21,8 @@ class InputParserTest {
     InputParser inputParser = new InputParser();
     inputParser.parse(validArgs);
     for ( RepositoryID repoID: inputParser.getRepositoryIDs() ) {
-        Assertions.assertEquals("Microsoft", repoID.getOwner());
-        Assertions.assertEquals("BosqueLanguage", repoID.getRepoName());
+        assertEquals("Microsoft", repoID.getOwner());
+        assertEquals("BosqueLanguage", repoID.getRepoName());
     }
 
 
@@ -30,7 +32,7 @@ class InputParserTest {
 @ValueSource(strings = {"-b", "repo"})
     void parseInvalidInput_throwsException(String input) {
     String[] invalid = {input};
-    Assertions.assertThrows(Exception.class, () ->
+    assertThrows(Exception.class, () ->
         new InputParser().parse(invalid));
 
 

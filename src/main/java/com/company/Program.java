@@ -23,7 +23,7 @@ class Program {
         List<RepositoryID> repositoryIDsOfRequestedRepos = inputParser.getRepositoryIDs();
 
 
-        GetDataFromGithub.download(repositoryIDsOfRequestedRepos,reposData);
+        GetDataFromGithub.getData(repositoryIDsOfRequestedRepos,reposData);
 
         for (Map.Entry<RepositoryID, JsonStructure> entry : reposData.entrySet()) {
             String owner = entry.getKey().getOwner();

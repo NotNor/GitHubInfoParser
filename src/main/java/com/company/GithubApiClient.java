@@ -8,8 +8,8 @@ import javax.json.JsonStructure;
 import java.net.URL;
 import java.net.URLConnection;
 
-class GithubDataRequester {
-    static JsonStructure get(RepositoryID request) throws Exception {
+class GithubApiClient {
+    static JsonStructure downloadJsonOf(RepositoryID request) throws Exception {
         String link = linkBuilder(request);
         URL url = new URL(link);
         URLConnection gitHubRestApi = url.openConnection();
