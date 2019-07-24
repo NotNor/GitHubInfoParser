@@ -65,17 +65,17 @@ public class SQLiteOutputWriter implements OutputWriter {
           REPO_COLUMN_REPO_NAME + ", " + REPO_COLUMN_OWNER_ID + "))");
 
 
-      for (OutputRecord record : outputRecords)
+      for ( OutputRecord record : outputRecords )
       {
         PreparedStatement queryOwner = sqliteDB.prepareStatement(QUERY_OWNER);
         queryOwner.setString(1, record.getOwner());
-        ResultSet resultSet = queryOwner.executeQuery();
+        ResultSet ownerAlreadyInDB = queryOwner.executeQuery();
 
         int ownerID;
 
-        if (resultSet.next())
+        if ( ownerAlreadyInDB.next() )
         {
-          ownerID = resultSet.getInt(1);
+          ownerID = ownerAlreadyInDB.getInt(1);
         }
         else
         {

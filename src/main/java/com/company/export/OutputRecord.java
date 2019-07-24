@@ -10,7 +10,7 @@ public class OutputRecord {
   private final String licenseURL;
 
   public OutputRecord(String owner, String repoName, String language,
-                      int forksNum, int starsNum, String licenseName, String licenseURL)
+                       Integer forksNum, Integer starsNum, String licenseName, String licenseURL)
   {
     this.owner = owner;
     this.repoName = repoName;
@@ -56,12 +56,12 @@ public class OutputRecord {
     return language;
   }
 
-  public int getForksNum()
+  public Integer getForksNum()
   {
     return forksNum;
   }
 
-  public int getStarsNum()
+  public Integer getStarsNum()
   {
     return starsNum;
   }

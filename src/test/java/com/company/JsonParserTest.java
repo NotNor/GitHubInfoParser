@@ -34,8 +34,8 @@ class JsonParserTest {
            owner,
            name,
            language,
-           Integer.toString(forks),
-           Integer.toString(stargazers_count),
+           forks,
+           stargazers_count,
            licenseName,
            licenseUrl);
 
