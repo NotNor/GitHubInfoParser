@@ -8,14 +8,14 @@ import com.company.input.RepositoryID;
 
 import javax.json.JsonStructure;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Program {
   private final List<OutputRecord> output = new LinkedList<>();
-  private final Map<RepositoryID, JsonStructure> reposData = new HashMap<>();
+  private final ConcurrentHashMap<RepositoryID, JsonStructure> reposData = new ConcurrentHashMap<>();
 
   void run(String[] args) throws Exception
   {

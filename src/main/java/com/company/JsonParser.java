@@ -8,34 +8,59 @@ class JsonParser {
   static OutputRecord parseData(String owner, String repoName, JsonStructure repoData)
   {
 
-    String language = (String) getValue("/language", repoData);
-    Integer forksNum = (Integer) getValue("/forks", repoData);
-    Integer starsNum = (Integer) getValue("/stargazers_count", repoData);
-    String licenseName = (String) getValue("/license/name", repoData);
-    String licenseURL = (String) getValue("/license/url", repoData);
+    String language = getStringValue("/language", repoData);
+    Integer forksNum = getIntegerValue("/forks", repoData);
+    Integer starsNum =  getIntegerValue("/stargazers_count", repoData);
+    String licenseName = getStringValue("/license/name", repoData);
+    String licenseURL = getStringValue("/license/url", repoData);
 
     return new OutputRecord(owner, repoName, language, forksNum, starsNum, licenseName, licenseURL);
   }
 
-  private static Object getValue(String pointer, JsonStructure repoData)
+  private static String getStringValue(String pointer, JsonStructure repoData)
   {
     try
     {
-      if ( repoData.getValue(pointer).getValueType() == JsonValue.ValueType.STRING )
+      if (repoData.getValue(pointer).getValueType() == JsonValue.ValueType.STRING)
       {
-        return ((JsonString) repoData.getValue(pointer)).getString();
+        return repoData.getValue(pointer).toString();
       }
-      else if ( repoData.getValue(pointer).getValueType() == JsonValue.ValueType.NUMBER )
-      {
-        return ( (JsonNumber) (repoData.getValue(pointer)) ).intValue();
-      }
-      else
+      else if (repoData.getValue(pointer).getValueType() == JsonValue.ValueType.NULL)
       {
         return null;
       }
-    } catch (JsonException e)
+
+      throw new IllegalArgumentException("Invalid datatype.\n" +
+          "Requested: INTEGER\n" +
+          "Found: " + repoData.getValue(pointer).getValueType());
+    }
+    catch (JsonException e)
     {
       return null;
     }
   }
+
+  private static Integer getIntegerValue(String pointer, JsonStructure repoData)
+  {
+    try
+    {
+      if (repoData.getValue(pointer).getValueType() == JsonValue.ValueType.NUMBER)
+      {
+        return ((JsonNumber) repoData.getValue(pointer)).intValue();
+      }
+      else if (repoData.getValue(pointer).getValueType() == JsonValue.ValueType.NULL)
+      {
+        return null;
+      }
+
+      throw new IllegalArgumentException("Invalid datatype.\n" +
+          "Requested: INTEGER\n" +
+          "Found: " + repoData.getValue(pointer).getValueType());
+    }
+    catch (JsonException e)
+    {
+      return null;
+    }
+  }
+
 }

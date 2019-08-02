@@ -4,8 +4,8 @@ public class OutputRecord {
   private final String owner;
   private final String repoName;
   private final String language;
-  private final int forksNum;
-  private final int starsNum;
+  private final Integer forksNum;
+  private final Integer starsNum;
   private final String licenseName;
   private final String licenseURL;
 

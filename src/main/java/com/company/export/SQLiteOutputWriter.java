@@ -86,11 +86,11 @@ public class SQLiteOutputWriter implements OutputWriter {
         }
 
         PreparedStatement insertRepoInfo = sqliteDB.prepareStatement(INSERT_REPO);
-        insertRepoInfo.setInt(1, ownerID);
+        insertRepoInfo.setObject(1, ownerID, Types.INTEGER);
         insertRepoInfo.setString(2, record.getRepoName());
         insertRepoInfo.setString(3, record.getLanguage());
-        insertRepoInfo.setInt(4, record.getForksNum());
-        insertRepoInfo.setInt(5, record.getStarsNum());
+        insertRepoInfo.setObject(4, record.getForksNum(), Types.INTEGER);
+        insertRepoInfo.setObject(5, record.getStarsNum(), Types.INTEGER);
         insertRepoInfo.setString(6, record.getLicenseName());
         insertRepoInfo.setString(7, record.getLicenseURL());
 

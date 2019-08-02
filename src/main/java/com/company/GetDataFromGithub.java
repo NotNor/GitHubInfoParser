@@ -5,12 +5,12 @@ import com.company.input.RepositoryID;
 import javax.json.JsonStructure;
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 class GetDataFromGithub {
   static void getData(List<RepositoryID> repositoryIDsOfRequestedRepos,
-                      Map<RepositoryID, JsonStructure> reposData)
+                      ConcurrentHashMap<RepositoryID, JsonStructure> reposData)
   {
 
     CountDownLatch countDownLatch = new CountDownLatch(repositoryIDsOfRequestedRepos.size());
@@ -28,8 +28,8 @@ class GetDataFromGithub {
     }
   }
 
-  private static synchronized void get(RepositoryID repositoryID,
-                                       Map<RepositoryID, JsonStructure> reposData,
+  private static void get(RepositoryID repositoryID,
+                                       ConcurrentHashMap<RepositoryID, JsonStructure> reposData,
                                        CountDownLatch countDownLatch)
   {
 
@@ -48,6 +48,5 @@ class GetDataFromGithub {
       countDownLatch.countDown();
     }
   }
-
 
 }
