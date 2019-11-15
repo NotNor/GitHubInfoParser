@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Owner</th>
+        <th>Repo Name</th>
+        <th>Language</th>
+        <th>Forks</th>
+        <th>Stars</th>
+        <th>License</th>
+        <th>License URL</th>
+    </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="repo : ${data}">
+            <tr>
+            <td th:text="${repo.owner}"/>
+            <td th:text="${repo.repoName}"/>
+            <td th:text="${repo.language}"/>
+            <td th:text="${repo.forksNum}"/>
+            <td th:text="${repo.starsNum}"/>
+            <td th:text="${repo.licenseName}"/>
+            <td th:text="${repo.licenseURL}"/>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+<h3><a href="/">Return to main page</a></h3>
+</body>
+</html>
